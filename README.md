@@ -44,5 +44,7 @@ provider、injector写法请参考
 项目运行时需要将injector.go文件排除编译路径（可以使用简单的重命名处理 例如：injector.go.bak, 生成注入代码时，需将其还原）
 
 + 使用命令 go run server.go migrate 进行数据库迁移
++ orm相关操作参考
+[https://gorm.io/](https://gorm.io/ "https://gorm.io/")
 + 其他使用方式，自行查看源码demo
 
