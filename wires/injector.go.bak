@@ -1,0 +1,88 @@
+package wires
+
+import (
+	"com.github.gin-common/app/service"
+	"com.github.gin-common/app/service/impl"
+	"com.github.gin-common/common/controllers"
+	"github.com/google/wire"
+)
+
+var createUserControllerInjectSet = wire.NewSet(provideCreateUserForm, provideCreateUserController, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, provideUserService, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)))
+
+func CreateUserController() controllers.Controller {
+	wire.Build(createUserControllerInjectSet)
+	return nil
+}
+
+var editUserControllerInjectSet = wire.NewSet(provideUpdateUserForm, provideEditUserController, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, provideUserService, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)))
+
+func UpdateUserController() controllers.Controller {
+	wire.Build(editUserControllerInjectSet)
+	return nil
+}
+
+var deleteUserControllerInjectSet = wire.NewSet(provideDeleteUserController, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, provideUserService, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)))
+
+func DeleteUserController() controllers.Controller {
+	wire.Build(deleteUserControllerInjectSet)
+	return nil
+}
+
+var activateUserControllerInjectSet = wire.NewSet(provideActivateUserController, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, provideUserService, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)))
+
+func ActivateUserController() controllers.Controller {
+	wire.Build(activateUserControllerInjectSet)
+	return nil
+}
+
+var deActivateUserControllerInjectSet = wire.NewSet(provideDeActivateUserController, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, provideUserService, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)))
+
+func DeActivateUserController() controllers.Controller {
+	wire.Build(deActivateUserControllerInjectSet)
+	return nil
+}
+
+var getUserInfoControllerInjectSet = wire.NewSet(provideGetUserInfoController, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, provideUserService, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)))
+
+func GetUserInfoController() controllers.Controller {
+	wire.Build(getUserInfoControllerInjectSet)
+	return nil
+}
+
+var changePasswordControllerInjectSet = wire.NewSet(provideChangePasswordController, provideChangePassForm, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, provideUserService, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)))
+
+func ChangePasswordController() controllers.Controller {
+	wire.Build(changePasswordControllerInjectSet)
+	return nil
+}
+
+var authMiddlewareInjectSet = wire.NewSet(provideAuthMiddleware, provideRedisRdb, provideRedisContext, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, provideUserService, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)))
+
+func AuthMiddleware() controllers.MiddleWare {
+	wire.Build(authMiddlewareInjectSet)
+	return nil
+}
+
+func DeactivatedAbortMiddleware() controllers.MiddleWare {
+	wire.Build(provideDeactivatedAbortMiddleware)
+	return nil
+}
+
+var loginControllerInjectSet = wire.NewSet(provideLoginController, provideLoginForm, provideRedisContext, provideRedisRdb, provideUserService, provideAuthService, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)), wire.Bind(new(service.AuthService), new(*impl.AuthServiceImpl)))
+
+func LoginController() controllers.Controller {
+	wire.Build(loginControllerInjectSet)
+	return nil
+}
+
+var logoutControllerInjectSet = wire.NewSet(provideLogoutController, provideRedisContext, provideRedisRdb, provideUserService, provideAuthService, provideGormSessionTimeout, provideTimeoutGormContext, provideTimeoutGormSession, wire.Bind(new(service.UserService), new(*impl.UserServiceImpl)), wire.Bind(new(service.AuthService), new(*impl.AuthServiceImpl)))
+
+func LogoutController() controllers.Controller {
+	wire.Build(logoutControllerInjectSet)
+	return nil
+}
+
+func CurrentUserController() controllers.Controller {
+	wire.Build(provideCurrentUserController)
+	return nil
+}
