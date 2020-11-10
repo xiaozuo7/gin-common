@@ -6,7 +6,7 @@ import (
 )
 
 func doMigrate(dst ...interface{}) {
-	err := db_tool.GetDB().AutoMigrate(dst)
+	err := db_tool.GetDB().AutoMigrate(dst...)
 	if err != nil {
 		panic(err)
 	}
