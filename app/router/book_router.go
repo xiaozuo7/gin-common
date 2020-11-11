@@ -6,6 +6,7 @@ func (router BookRouter) GroupName() string {
 	return "/book"
 }
 
+
 //func (router BookRouter) GroupConfig() map[string][]routers.RouteDesc {
 //	return map[string][]routers.RouteDesc{
 //		"": {
