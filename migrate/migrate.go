@@ -13,5 +13,5 @@ func doMigrate(dst ...interface{}) {
 }
 
 func Migrate() {
-	doMigrate(model.User{})
+	doMigrate(model.User{}, model.Book{})
 }

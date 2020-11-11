@@ -13,6 +13,7 @@ type User struct {
 	Name     string `gorm:"size:256;not null;default:''" json:"name"`
 	Password string `gorm:"size:256;not null;" json:"-"`
 	Email    string `gorm:"size:256" json:"email"`
+	Books    []Book `gorm:"foreignKey:UserID"`
 }
 
 func (user *User) SetPass(pwd string) error {
