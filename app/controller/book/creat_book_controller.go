@@ -21,7 +21,6 @@ func (controller *CreateBookController) Init(createBookForm *form.CreatBookForm,
 	controller.bookService = bookService
 }
 
-//implement
 func (controller *CreateBookController) createBook(context *gin.Context) (data *resp.Response, err error) {
 	if e := context.ShouldBindJSON(controller.createBookForm); e != nil {
 		err = e
@@ -38,7 +37,7 @@ func (controller *CreateBookController) createBook(context *gin.Context) (data *
 		return
 	}
 	data = controllers.Success(gin.H{
-		"user": book,
+		"book": book,
 	})
 	return
 }
