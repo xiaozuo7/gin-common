@@ -14,6 +14,7 @@ import (
 	"com.github.gin-common/app/middleware"
 
 	authController "com.github.gin-common/app/controller/auth"
+	bookController "com.github.gin-common/app/controller/book"
 	userController "com.github.gin-common/app/controller/user"
 
 	"com.github.gin-common/app/service/impl"
@@ -152,4 +153,20 @@ func provideLogoutController(authService service.AuthService) controllers.Contro
 
 func provideCurrentUserController() controllers.Controller {
 	return &authController.CurrentUserController{}
+}
+
+func provideCreatBookForm() *form.CreatBookForm {
+	return &form.CreatBookForm{}
+}
+
+func provideCreateBookController(CreatBookForm *form.CreatBookForm, bookService service.BookService) controllers.Controller {
+	c := &bookController.CreateBookController{}
+	c.Init(CreatBookForm, bookService)
+	return c
+}
+
+func provideBookService(session *gorm.DB) *impl.BookServiceImpl {
+	serviceImpl := &impl.BookServiceImpl{}
+	serviceImpl.Init(session)
+	return serviceImpl
 }

@@ -25,6 +25,7 @@ import (
 var routerConfigs = []routers.GinRouterInterface{
 	router.UserRouter{},
 	router.AuthRouter{},
+	router.BookRouter{},
 }
 
 func setGinMode() {
@@ -51,6 +52,7 @@ func main() {
 	r.Use(gin_logger.LoggerWithWriter(gin.DefaultWriter, util.GetLogLevel(ginLogLevel), []zap.Option{}))
 	// 加载recover中间件
 	r.Use(gin_recovery.Recovery())
+
 
 	gin.DebugPrintRouteFunc = func(httpMethod, absolutePath, handlerName string, nuHandlers int) {
 		gin_logger.Log.Info("", zap.String("httpMethod", httpMethod), zap.String("absolutePath", absolutePath))
